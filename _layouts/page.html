@@ -2,14 +2,6 @@
 layout: default
 ---
 
-<article class="page post-entry">
+{%- if page.detail_image -%}<img class="detail_header" src="{{ page.detail_image }}">{%- endif -%}
 
-    <header>
-        <h1>{{ page.title | escape }}</h1>
-    </header>
-
-    <div class="page-content">
-        {{ content }}
-    </div>
-
-</article>
+{{ content }}
