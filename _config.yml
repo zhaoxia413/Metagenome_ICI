@@ -1,26 +1,6 @@
-title: "Metagenome_ICI"
-tagline: "A jekyll theme that looks like a shell/terminal"
-description: "This is a preview of jekyll-shell-theme."
-github_username: zhaoxia
-baseurl: "/zhaoxia413"
-url: "https://zhaoxia413.github.io"
-remote_theme: "tareqdandachi/jekyll-shell-theme"
-theme: jekyll-shell-theme
-
-plugins:
-  - jemoji
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
-sass:
-  style: compressed
-
-highlighter: rouge
-
-header_pages:
-  - index.md
-  - read-me.md
-  - preview.md
-
-# set the size of the text to 'large' or 'small', default is small
-font-size: small
+---
+exclude: ['README.markdown']
+permalink: ':title'
+highlighter: pygments
+safe: false
+title: 'Carte'
