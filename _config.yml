@@ -5,6 +5,7 @@ github_username: tareqdandachi
 baseurl: "/zhaoxia413"
 url: "https://zhaoxia413.github.io"
 remote_theme: "tareqdandachi/jekyll-shell-theme"
+theme: jekyll-shell-theme
 
 plugins:
   - jemoji
@@ -23,10 +24,3 @@ header_pages:
 
 # set the size of the text to 'large' or 'small', default is small
 font-size: small
-
-
-gem "jekyll-shell-theme"
-
-
-theme: jekyll-shell-theme
-
