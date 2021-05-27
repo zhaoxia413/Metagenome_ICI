@@ -25,13 +25,8 @@ header_pages:
 font-size: small
 
 
-```ruby
 gem "jekyll-shell-theme"
-```
 
-And add this line to your Jekyll site's `_config.yml`:
 
-```yaml
 theme: jekyll-shell-theme
-```
 
