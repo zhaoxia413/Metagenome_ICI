@@ -1,7 +1,7 @@
-title: "zhaoxia413"
+title: "Metagenome_ICI"
 tagline: "A jekyll theme that looks like a shell/terminal"
 description: "This is a preview of jekyll-shell-theme."
-github_username: tareqdandachi
+github_username: zhaoxia
 baseurl: "/zhaoxia413"
 url: "https://zhaoxia413.github.io"
 remote_theme: "tareqdandachi/jekyll-shell-theme"

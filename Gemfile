@@ -1,7 +1,5 @@
-# frozen_string_literal: true
 
-source "https://rubygems.org"
-gemspec
+gem "jekyll-shell-theme"
 
 # Including GitHub Pages gem
 gem "github-pages", group: :jekyll_plugins
