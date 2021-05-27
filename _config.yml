@@ -1,9 +1,10 @@
-title: "jekyll-shell-theme"
+title: "zhaoxia413"
 tagline: "A jekyll theme that looks like a shell/terminal"
 description: "This is a preview of jekyll-shell-theme."
 github_username: tareqdandachi
-baseurl: "/jekyll-shell-theme"
-url: "https://tareqdandachi.github.io"
+baseurl: "/zhaoxia413"
+url: "https://zhaoxia413.github.io"
+remote_theme: "tareqdandachi/jekyll-shell-theme"
 
 plugins:
   - jemoji
@@ -22,3 +23,15 @@ header_pages:
 
 # set the size of the text to 'large' or 'small', default is small
 font-size: small
+
+
+```ruby
+gem "jekyll-shell-theme"
+```
+
+And add this line to your Jekyll site's `_config.yml`:
+
+```yaml
+theme: jekyll-shell-theme
+```
+
