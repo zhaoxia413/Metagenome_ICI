@@ -1,8 +1,5 @@
----
-exclude: ['README.markdown']
-permalink: ':title'
-highlighter: rouge
-safe: false
-title: 'Carte'
 
-theme: jekyll-theme-modernist
+title: "Remote theme example"
+remote_theme: pmarsceill/just-the-docs
+color_scheme: "dark"
+search_enabled: false
