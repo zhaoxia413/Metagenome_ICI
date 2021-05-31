@@ -44,6 +44,8 @@ do
 kneaddata -i /data2/ZhouZhiyuan/RJNA678737/metagenome/"$i"_1.fastq.gz -i /data2/ZhouZhiyuan/RJNA678737/metagenome/"$i"_2.fastq.gz --reference-db /data3/zhaoxia/metagenomeTools/kneaddata_db/bowtie2_contam_hg37_db -v -t 20 --fastqc FastQC --remove-intermediate-output --bowtie2-options "--very-sensitive --dovetail" -o ./kneaddata_res/"$i"
 done
 ```
+
+```bash
 $ mkdir kraken_braken_merge_tables
 python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*P.braken  -o ./kraken_braken_merge_tables/combine_phylum.txt
 python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*C.braken  -o ./kraken_braken_merge_tables/combine_Class.txt
@@ -51,9 +53,6 @@ python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*O.brake
 python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*G.braken  -o ./kraken_braken_merge_tables/combine_Genus.txt
 python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*F.braken  -o ./kraken_braken_merge_tables/combine_Family.txt
 python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*S.braken  -o ./kraken_braken_merge_tables/combine_Spices.txt
-```zsh
-
-
 ```
 
 ```zsh
@@ -103,8 +102,10 @@ done
 ```
 ```bash
 # .. or if you're using a Gemfile (bundler)
-$ metawrap binning -o metawrap_initial_bining -t 96 \
--a merged_megahit_assembly/assembly.contigs.fa --metabat2 --maxbin2 --concoct bbrename/SRR*fastq 
+$ conda activate py3
+metawrap binning -o metawrap_initial_bining -t 96 \
+-a merged_megahit_assembly/assembly.contigs.fa --metabat2 --maxbin2 --concoct bbrename/SRR*fastq
+conda deactivate
 ```
 4. Point your web browser to [http://localhost:4000](http://localhost:4000)
 
