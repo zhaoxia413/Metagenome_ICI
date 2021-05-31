@@ -87,7 +87,9 @@ $ cat kneaddata_clean/*_1.fastq > merge_assembly_reads/ALL_READS_1.fastq
 ```
 
 ```zsh
-$ /data3/zhaoxia/metagenomeTools/quast/quast.py ./merged_megahit_assembly/assembly.contigs.fa -o Assembly_quast_evaluation/megahit-report
+$ conda activate py3
+/data3/zhaoxia/metagenomeTools/quast/quast.py ./merged_megahit_assembly/assembly.contigs.fa -o Assembly_quast_evaluation/megahit-report
+conda deactivate
 ```
 
 3. Run you local Jekyll servers
