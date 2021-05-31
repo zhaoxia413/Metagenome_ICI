@@ -90,6 +90,12 @@ $ conda activate py3
 /data3/zhaoxia/metagenomeTools/quast/quast.py ./merged_megahit_assembly/assembly.contigs.fa -o Assembly_quast_evaluation/megahit-report
 conda deactivate
 ```
+$ mkdir metaphlan_microAbundance
+metaphlan2.py merged_megahit_assembly/assembly.contigs.fa --input_type fasta > ./metaphlan_microAbundance/merged_contigs_profiled_metagenome.txt
+
+```zsh
+
+```
 
 3. Run you local Jekyll servers
 ```zsh
