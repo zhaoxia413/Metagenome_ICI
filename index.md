@@ -25,8 +25,13 @@ Just the Docs is built for [Jekyll](https://jekyllrb.com), a static site generat
 ### Quick start: Use as a GitHub Pages remote theme
 
 1. Add Just the Docs to your Jekyll site's `_config.yml` as a [remote theme](https://blog.github.com/2017-11-29-use-any-theme-with-github-pages/)
-```yaml
-remote_theme: pmarsceill/just-the-docs
+```zsh
+parallel -j 35 --xapply \
+$'kneaddata -i {1} -i {2} \
+-o kneaddata_res/{3} -v -t 20 --fastqc FastQC --remove-intermediate-output \
+--bowtie2-options "--very-sensitive --dovetail" \
+--reference-db /data3/zhaoxia/metagenomeTools/kneaddata_db/bowtie2_contam_hg37_db' \
+::: /data2/ZhouZhiyuan/RJNA678737/metagenome/*_1.fastq.gz ::: /data2/ZhouZhiyuan/RJNA678737/metagenome/*_2.fastq.gz :::: samplelist
 ```
 <small>You must have GitHub Pages enabled on your repo, one or more Markdown files, and a `_config.yml` file. [See an example repository](https://github.com/pmarsceill/jtd-remote)</small>
 
@@ -34,27 +39,70 @@ remote_theme: pmarsceill/just-the-docs
 
 1. Install the Ruby Gem
 ```bash
-$ gem install just-the-docs
+$ for i in $(cat samplelist )
+do
+kneaddata -i /data2/ZhouZhiyuan/RJNA678737/metagenome/"$i"_1.fastq.gz -i /data2/ZhouZhiyuan/RJNA678737/metagenome/"$i"_2.fastq.gz --reference-db /data3/zhaoxia/metagenomeTools/kneaddata_db/bowtie2_contam_hg37_db -v -t 20 --fastqc FastQC --remove-intermediate-output --bowtie2-options "--very-sensitive --dovetail" -o ./kneaddata_res/"$i"
+done
 ```
-```yaml
-# .. or add it to your your Jekyll site’s Gemfile
-gem "just-the-docs"
+$ mkdir kraken_braken_merge_tables
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*P.braken  -o ./kraken_braken_merge_tables/combine_phylum.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*C.braken  -o ./kraken_braken_merge_tables/combine_Class.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*O.braken  -o ./kraken_braken_merge_tables/combine_Order.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*G.braken  -o ./kraken_braken_merge_tables/combine_Genus.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*F.braken  -o ./kraken_braken_merge_tables/combine_Family.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*S.braken  -o ./kraken_braken_merge_tables/combine_Spices.txt
+```zsh
+
+
+```
+
+```zsh
+# _Optional:
+for i in $(cat samplelist)
+ do
+kraken2 --db /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ --threads 56  --report ./kraken_res/"$i".report --output ./kraken_res/"$i".output  ./clean_data/"$i"_kneaddata.fastq
+bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".P.braken -w ./bracken_res/"$i".P.braken.report -r 150 -l P
+bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".S.braken -w ./bracken_res/"$i".S.braken.report -r 150 -l S 
+bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".F.braken -w ./bracken_res/"$i".F.braken.report -r 150 -l F
+bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".G.braken -w ./bracken_res/"$i".G.braken.report -r 150 -l G
+bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".C.braken -w ./bracken_res/"$i".C.braken.report -r 150 -l C
+bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".O.braken -w ./bracken_res/"$i".O.braken.report -r 150 -l O
+
+done
 ```
 2. Add Just the Docs to your Jekyll site’s `_config.yml`
-```yaml
-theme: "just-the-docs"
+```zsh
+$ parallel -j 42 --xapply \
+'megahit -1 {1} -2 {2} \
+--out-prefix {3} \
+-o Assembly_megahit_res/{3}' \
+::: kneaddata_clean/*_1.fastq ::: kneaddata_clean/*_2.fastq :::: samplelist
 ```
 3. _Optional:_ Initialize search data (creates `search-data.json`)
-```bash
-$ bundle exec just-the-docs rake search:init
+```zsh
+$ cat kneaddata_clean/*_1.fastq > merge_assembly_reads/ALL_READS_1.fastq
+  cat kneaddata_clean/*_2.fastq > merge_assembly_reads/ALL_READS_2.fastq
+  metawrap assembly -1 merge_assembly_reads/ALL_READS_1.fastq -2 merge_assembly_reads/ALL_READS_2.fastq -m 24 -t 8 \
+  --metaspades -o merged_megahit_assembly
 ```
-3. Run you local Jekyll server
-```bash
-$ jekyll serve
+
+```zsh
+$ /data3/zhaoxia/metagenomeTools/quast/quast.py ./merged_megahit_assembly/assembly.contigs.fa -o Assembly_quast_evaluation/megahit-report
+```
+
+3. Run you local Jekyll servers
+```zsh
+$ for i in $(cat samplelist)
+do
+bbrename.sh in=kneaddata_clean/"$i"_1_kneaddata_paired_1.fastq \
+in2=kneaddata_clean/"$i"_1_kneaddata_paired_2.fastq \
+out=bbrename/"$i"_rename_1.fastq out2=bbrename/"$i"_rename_2.fastq 
+done
 ```
 ```bash
 # .. or if you're using a Gemfile (bundler)
-$ bundle exec jekyll serve
+$ metawrap binning -o metawrap_initial_bining -t 96 \
+-a merged_megahit_assembly/assembly.contigs.fa --metabat2 --maxbin2 --concoct bbrename/SRR*fastq 
 ```
 4. Point your web browser to [http://localhost:4000](http://localhost:4000)
 
