@@ -18,7 +18,54 @@ Just the Docs gives your documentation a jumpstart with a responsive Jekyll them
 
 ## Getting started
 
-### Dependencies
+### Shotgun Metagenomic Tools
+#### Quality control of raw data
+#### Remove human sequences
+####  Quality control of trimmed data
+####  De novo assembly
+####  bining
+####  Quality control of bining
+####  Phylogenetic and taxonomic analyses
+####  Functional characterization
+####   Species prevalence and abundance
+####   Comparative genomics
+####   Multiomics assays
+####  Correlation analysis
+####  Referenses
+1. Duvallet, C., Gibbons, S. M., Gurry, T., Irizarry, R. A. & Alm, E. J. Meta-analysis of gut microbiome studies identifies disease-specific and shared responses. Nat. Commun. 8, 1784 (2017).
+2. Quince, C., Walker, A. W., Simpson, J. T., Loman, N. J. & Segata, N. Shotgun metagenomics, from sampling to analysis. Nat. Biotechnol. 35, 833–844 (2017).
+3. Browne, H. P. et al. Culturing of ‘unculturable’ human microbiota reveals novel taxa and extensive sporulation. Nature 533, 543–546 (2016).
+4. Forster, S. C. et al. A human gut bacterial genome and culture collection for precise and efficient metagenomic analysis. Nat. Biotechnol. 37, 186–192 (2019)
+5. Kang, D. D., Froula, J., Egan, R. & Wang, Z. MetaBAT, an efficient tool for accurately reconstructing single genomes from complex microbial communities. PeerJ 3, e1165 (2015).
+6. Parks, D. H., Imelfort, M., Skennerton, C. T., Hugenholtz, P. & Tyson, G. W. CheckM: assessing the quality of microbial genomes recovered from isolates,single cells, and metagenomes. Genome Res. 25, 1043–1055 (2015).
+7. Li,D.,Liu,C.-M.,Luo,R.,Sadakane,K.&Lam,T.-W.MEGAHIT:anultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics 31, 1674–1676 (2015).
+8. Uritskiy,G.V.,DiRuggiero,J.&Taylor,J.MetaWRAP-aflexiblepipelinefor genome-resolved metagenomic data analysis. Microbiome 6, 158 (2018).
+9. Varghese,N.J.etal.Microbialspeciesdelineationusingwholegenome sequences. Nucleic Acids Res. 43, 6761–6771 (2015).
+10. Segata, N., Börnigen, D., Morgan, X. C. & Huttenhower, C. PhyloPhlAn is a new method for improved phylogenetic and taxonomic placement of microbes. Nat. Commun. 4, 2304 (2013).
+11. Blin,K.etal.antiSMASH4.0—improvementsinchemistryprediction and gene cluster boundary identification. Nucleic Acids Res. 45, W36–W41 (2017).
+12. Mitchell,A.L.etal.EBIMetagenomicsin2017:enrichingtheanalysisof microbial communities, from sequence reads to assemblies. Nucleic Acids Res. 46, D726–D735 (2018).
+13. Kanehisa,M.,Sato,Y.&Morishima,K.BlastKOALAandGhostKOALA:KEGG tools for functional characterization of genome and metagenome sequences. J. Mol. Biol. 428, 726–731 (2016).
+14. Crichton,R.R.IronMetabolism:FromMolecularMechanismstoClinical Consequences. (John Wiley, Hoboken, NJ, 2016).
+15. Pasolli,E.etal.Extensiveunexploredhumanmicrobiomediversityrevealedby over 150,000 genomes from metagenomes spanning age, geography, and lifestyle. Cell 176, 649–662 (2019).
+16. Ren, J., Ahlgren, N. A., Lu, Y. Y., Fuhrman, J. A. & Sun, F. VirFinder: a novel k-mer based tool for identifying viral sequences from assembled metagenomic data. Microbiome 5, 69 (2017).
+17. Markowitz, V. M. et al. IMG: the Integrated Microbial Genomes database and comparative analysis system. Nucleic Acids Res. 40, D115–D122 (2012).
+18. Olm,M.R.,Brown,C.T.,Brooks,B.&Banfield,J.F.dRep:atoolforfastand accurate genomic comparisons that enables improved genome recovery from metagenomes through de-replication. ISME J. 11, 2864–2868 (2017).
+19. Stamatakis,A.RAxMLversion8:atoolforphylogeneticanalysisand post-analysis of large phylogenies. Bioinformatics 30, 1312–1313 (2014).
+20. Letunic,I.&Bork,P.Interactivetreeoflife(iTOL)v3:anonlinetoolforthedisplay and annotation of phylogenetic and other trees. Nucleic Acids Res. 44, W242–W245 (2016).
+21. Revell, L. J. phytools: an R package for phylogenetic comparative biology (and other things). Methods Ecol. Evol. 3, 217–223 (2012).
+22. Zmora, N., Zilberman-Schapira, G., Suez, J., Mor, U., Dori-Bachash, M., Bashiardes, S., et al. (2018). Personalized gut mucosal colonization resistance to empiric probiotics is associated with unique host and microbiome features. Cell 174:1388-1405.e21. doi: 10.1016/j.cell.2018.08.041
+23. Liu, B., and Pop, M. (2009). ARDB–antibiotic resistance genes database. Nucleic Acids Res. 37, D443–D447. doi: 10.1093/nar/gkn656
+24. Chen, L., Zheng, D., Liu, B., Yang, J., and Jin, Q. (2016). VFDB 2016: hierarchical and refined dataset for big data analysis–10 years on. Nucleic Acids Res. 44, D694–D697. doi: 10.1093/nar/gkv1239
+25. 
+####  Github
+1. [A new genomic blueprint of the human gut microbiota] (https://github.com/Finn-Lab/MGS-gut)
+2.  
+####  Online tools
+1. [Predictive metabolomic profiling of microbial communities using amplicon or metagenomic sequences]
+ (http:// huttenhower.sph.harvard.edu/melonnpan/]
+
+
+
 
 Just the Docs is built for [Jekyll](https://jekyllrb.com), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for more information. Just the Docs requires no special plugins and can run on GitHub Pages' standard Jekyll compiler. The [Jekyll SEO Tag plugin](https://github.com/jekyll/jekyll-seo-tag) is included by default (no need to run any special installation) to inject SEO and open graph metadata on docs pages. For information on how to configure SEO and open graph metadata visit the [Jekyll SEO Tag usage guide](https://jekyll.github.io/jekyll-seo-tag/usage/).
 
@@ -96,7 +143,7 @@ $ mkdir metaphlan_microAbundance
 metaphlan2.py merged_megahit_assembly/assembly.contigs.fa --input_type fasta > ./metaphlan_microAbundance/merged_contigs_profiled_metagenome.txt
 ```
 
-3. Run you local Jekyll servers
+3. 解决metawrap binning 时 Cannot repair BWA paired reads that have different name
 ```zsh
 $ for i in $(cat samplelist)
 do
@@ -105,14 +152,75 @@ in2=kneaddata_clean/"$i"_1_kneaddata_paired_2.fastq \
 out=bbrename/"$i"_rename_1.fastq out2=bbrename/"$i"_rename_2.fastq 
 done
 ```
+4. Bin the co-assembly with three different algorithms with the Binning module
+运行metawrap binning前出现以下错误
+samtools: error while loading shared libraries: libncurses.so.6，所以用conda py3的环境
+
+Following assembly with 
+
 ```bash
-# .. or if you're using a Gemfile (bundler)
+# .. or if you're using a Gemfile (bundler) 
 $ conda activate py3
-metawrap binning -o metawrap_initial_bining -t 96 \
+$ metawrap binning -o metawrap_initial_bining -t 96 \
 -a merged_megahit_assembly/assembly.contigs.fa --metabat2 --maxbin2 --concoct bbrename/SRR*fastq
-conda deactivate
+$ conda deactivate
 ```
-4. Point your web browser to [http://localhost:4000](http://localhost:4000)
+The quality of each bin was evaluated with CheckM according to the level of genome completeness and contamination.
+CheckM is unable to evaluate non-prokaryotic genomes
+
+
+4. Metagenomic strain-level population genomics
+   StrainPhlAn is a computational tool for tracking individual strains across large set of samples. The input of StrainPhlAn is a set of metagenomic samples and for each species, the output is a multiple sequence alignment (MSA) file of all species strains reconstructed directly from the samples. From this MSA, StrainPhlAn calls RAxML (or other phylogenetic tree builders) to build the phylogenetic tree showing the strain evolution of the sample strains. For each sample, StrainPhlAn extracts the strain of a specific species by merging and concatenating all reads mapped against that species markers in the MetaPhlAn2 database.
+```bash
+$ strainphlan.py -h  
+$ find /data3/zhaoxia/ -name "mpa_v*"
+```
+4. Pathogen screening
+Screening for presence of genes in short read samples
+full genome shotgun sequencing
+
+→ MetaMLST
+
+      screen for presence of MLST genes or self-defined reference gene sequences
+
+→ SRST2
+
+      screen for presence of MLST genes or self-defined reference gene sequences
+
+→ ARIBA
+
+      screen for antibiotic resistance genes or MLST genes (local assembly based approach)
+
+Screening for presence of genes in assembled contigs
+→ ABRicate
+
+      screening of contigs for antimicrobial resistance or virulence genes
+
+Screening for bacterial strains in short read samples
+full genome shotgun sequencing
+
+→ PanPhlAn
+
+      screen for new strains of a species (E. coli) and identify the strain specific gene set
+
+1. Download the reference genomes
+```bash
+$ mkdir Alistipes
+$ cd AListipes
+$ panphlan_download_pangenome.py -i Alistipes_finegoldii -o ./
+# or
+$ wget -c https://www.dropbox.com/s/sgpnfk5ahlpo7wq/Alistipes_finegoldii.tar.bz2\?dl\=0
+$ ls  -l Alistipes_finegoldii/
+```
+This will download and extract a folder containing :
+
+Alistipes_finegoldii_pangenome_contigs.fna : all contigs from the reference genomes
+Alistipes_finegoldii.X.bt2 : the bowtie2 indexes (6 files)
+panphlan_Alistipes_finegoldii_annot.tsv : an annotation mapping tsv file, can be useful for further analysis of gene families of interest
+Alistipes_finegoldii_pangenome.tsv : a pangenome tsv file containing information about gene families UniRef90 ID, gene family name and position (genome, contig, start and stop) like the following example.
+
+
+5. Point your web browser to [http://localhost:4000](http://localhost:4000)
 
 If you're hosting your site on GitHub Pages, [set up GitHub Pages and Jekyll locally](https://help.github.com/en/articles/setting-up-your-github-pages-site-locally-with-jekyll) so that you can more easily work in your development environment.
 
