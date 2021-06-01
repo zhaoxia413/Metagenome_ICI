@@ -1,38 +1,156 @@
 ---
 layout: default
-title: Home
+title: Microbiome in ICIs
 nav_order: 1
-description: "Just the Docs is a responsive Jekyll theme with built-in search that is easily customizable and hosted on GitHub Pages."
+description: "Decoding gut micobiome for clinical success"
 permalink: /
 ---
 
 # Focus on writing good documentation
 {: .fs-9 }
 
-Just the Docs gives your documentation a jumpstart with a responsive Jekyll theme that is easily customizable and hosted on GitHub Pages.
+Decoding gut micobiome for clinical success.
 {: .fs-6 .fw-300 }
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/pmarsceill/just-the-docs){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [View it on GitHub](https://github.com/zhaoxia413/Metagenome_ICI){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 
 ## Getting started
+### Microbiomic database
+1. [RDP](http://rdp.cme.msu.edu/index.jsp)RibosomalDatabase Project
+2. [SILVA](https://www.arb-silva.de/)
+3. [Greengenes](http://greengenes.lbl.gov/)
+4. [EzBioCloud](http://www.ezbiocloud.net/dashboard)
+5. [PR2](https://figshare.com/articles/PR2_rRNA_gene_database/3803709)（ProtistRibosomal Reference database）
+6. [FunGene](http://fungene.cme.msu.edu/)Functional Gene
+### Shotgun Metagenomic
+Metagenomics is the study of microbial communities in their original living places. Metagenome sequencing refers to sequencing the entire genomes of all microbes present in a sample in order to explore taxonomic, functional, and evolutionary aspects.
 
-### Shotgun Metagenomic Tools
-#### Quality control of raw data
-#### Remove human sequences
+---
+
+### Metagenomics sampling projects
+1. Human Microbiome Project [HMP]()
+2. Human Gastrointestinal Bacteria Culture Collection [HBC]()
+   A comprehensive set of 737 whole-genome-sequenced bacterial isolates, representing 273 species (105 novel species) from 31 families found in the human gastrointestinal microbiota.
+   [Forster, S.C., Kumar, N., Anonye, B.O. et al. A human gut bacterial genome and culture collection for improved metagenomic analyses. Nat Biotechnol 37, 186–192 (2019). https://doi.org/10.1038/s41587-018-0009-7](https://doi.org/10.1038/s41587-018-0009-7)
+3. [Tara Oceans Expedition](https://doi.pangaea.de/10.1594/PANGAEA.840721)
+   The present data set is a registry of samples from the Tara Oceans Expedition (2009-2013) that were selected for publication in a special issue of the SCIENCE journal (see related references below). The registry provides details about the sampling location and methodology of each sample. Uniform resource locators (URLs) offer direct links to additional contextual environmental data and to the corresponding sequence runs used for analysis in the related literature publications in the SCIENCE journal.
+
+
+---
+
+---
+
+###  Shotgun Metagenomic Analysis
+
+---
+####  Data download
+1. [Metagenomics toolkit](https://github.com/EBI-Metagenomics/emg-toolkit) enables scientists to download all of the sample metadata for a given study or sequence to a single csv file.
+2. (ffq)(https://github.com/pachterlab/ffq).Fetch run information from the European Nucleotide Archive (ENA).
+3. [NCBI Genome Downloading](https://github.com/kblin/ncbi-genome-download)
+   ```zsh
+   $ ncbi-genome-download --genera "Streptomyces coelicolor" bacteria
+   ```
+####  Quality control of raw data
+####  Remove human sequences
 ####  Quality control of trimmed data
 ####  De novo assembly
-####  bining
+1. short reads assembler[SPAdes](http://bioinf.spbau.ru/spades)
+2. for assembling large and complex metagenomics data[MEGAHIT](https://github.com/voutcn/megahit)
+   MEGAHIT is an ultra-fast and memory-efficient NGS assembler. It is optimized for metagenomes, but also works well on generic single genome assembly (small or mammalian size) and single-cell assembly.
+####  Alignment
+1. [bowtie2](https://github.com/BenLangmead/bowtie2)
+2. Burrows-Wheeler Aligner [BWA](https://github.com/lh3/bwa)
+#### reads binning: from clean reads
+总体来说应用最广泛的就是基于genes binning 和 contig binning
+#### Genes binning: from gene
+Genes binning方法一般是在宏基因组做完组装和基因预测之后，把所有样品中预测到的基因混合在一起，去冗余得到unique genes集合，对这个unique genes集合进行binning，主要是根据gene在各个样品中的丰度变化模式，计算gene之间的相关性，利用这种相关性进行聚类。
+1. metagenomic linkage groups ( MLG )
+2. metagenomic clusters ( MGC )
+3. metagenomic species ( MGS )
+4. metagenomic operational taxonomic units ( MetaOTUs )
+
+####  Contig bining: from contig
+1. [MetaBin](http://metabin.riken.jp/)
+2. [metaBAT](https://bitbucket.org/berkeleylab/metabat)
+3. [CONCOCT](https://github.com/BinPro/CONCOCT)
+4. [MetaAnnotator/MetaCluster] is a novel software for binning and annotating short paired-end reads(https://i.cs.hku.hk/~alse/MetaCluster/)
 ####  Quality control of bining
+1. [CheckM](http://ecogenomics.github.io/CheckM/)
 ####  Phylogenetic and taxonomic analyses
+1. [Kaiju](https://github.com/zhaoxia413/kaiju) is a program for the taxonomic classification of high-throughput sequencing reads, e.g., Illumina or Roche/454, from whole-genome sequencing of metagenomic DNA. Reads are directly assigned to taxa using the NCBI taxonomy and a reference database of protein sequences from microbial and viral genomes.
+2. The second version of the Kraken taxonomic sequence classification system [kraken2](https://github.com/DerrickWood/kraken2)
+3. 
 ####  Functional characterization
-####   Species prevalence and abundance
-####   Comparative genomics
-####   Multiomics assays
+1. [The Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi)
+2. [eggNOG-mapper](http://eggnogdb.embl.de/#/app/emapper)
+####  Species prevalence and abundance
+1. [PanPhlAn 3 - strain detection and characterization](https://github.com/SegataLab/panphlan)
+
+#### Strain-level
+1. Strain-level Metagenomic Estimation of Growth rate [SMEG](https://github.com/ohlab/SMEG) measures growth rates of bacterial subspecies or strains from complex metagenomic samples. SMEG is capable of identifying novel or uncharacterized strains in a given sample prior to growth estimation.
+[Emiola, A., Zhou, W., Oh, J. (2020) "Metagenomic growth rate inferences of strains in situ," Science Advances, 6(17), p.eaaz2299](https://advances.sciencemag.org/content/6/17/eaaz2299)
+
+#### Phylogenetic tree
+1. [Pairdist](https://github.com/frederic-mahe/pairdist)：用于建NJ树
+2. [TreeBest]（https://github.com/lh3/treebest 或者 http://treesoft.sourceforge.net/)
+   [TreeBest的使用](http://blog.sina.com.cn/s/blog_620b35790100mcp6.html)
+3. [Fasttree](http://www.microbesonline.org/fasttree/)
+4. [RAxML](https://sco.h-its.org/exelixis/web/software/raxml/index.html)：ML树工具
+5. [PhyML](http://www.atgc-montpellier.fr/phyml/）：在线构建ML树的工具，也可以本地执行
+6. [profileNJ](https://github.com/maclandrol/profileNJ)：使用物种数和NJ树校正Gene tree
+7. [Figtree](http://tree.bio.ed.ac.uk/software/figtree/)：a graphical viewer of phylogenetic trees and as a program for producing publication-ready figures.
+8. [Dendroscope](http://dendroscope.org/)：Software for visualizing phylogenetic trees and rooted networks.
+9. [PATRIC](https://www.patricbrc.org/)：Phylogenetic Tree Builder
+10. [TempEst](http://tree.bio.ed.ac.uk/software/tempest/)TempEst is a tool for investigating the temporal signal and 'clocklikeness' of molecular phylogenies.
+
+####  Comparative genomics
+1. [PGCGAP - the Prokaryotic Genomics and Comparative Genomics Analysis Pipeline](https://github.com/liaochenlanruo/pgcgap)
+2. [Sibelia](http://bioinf.spbau.ru/en/sibelia): A comparative genomics tool
+####  Multiomics assays
 ####  Correlation analysis
+####  Piplines
+1. [metaWrap](https://github.com/bxlab/metaWRAP)
+2. [gatk4-pathseq](https://github.com/gatk-workflows/gatk4-pathseq) This repo contains workflows for computational pathogen discovery using PathSeq, a pipeline in the Genome Analysis Toolkit (GATK) for detecting microbial organisms in short-read deep sequencing samples taken from a host organism.
+
+#### pan-genomes analysis
+1. [Roary](http://sanger-pathogens.github.io/Roary/) Large-scale prokaryote pan genome analysis Roary
+2. [BPGA](https://iicb.res.in/bpga/index.html) is an ultra-fast software package that provides comprehensive pan genome analysis of microorganisms.PGA is an ultra-fast software package that provides comprehensive pan genome analysis of microorganisms. In addition to all types of routine pan genomic analyses (Pan genome Profiles, Pan/Core Phylogeny etc.), BPGA includes a number of novel downstream analysis features like Exclusive Gene Family Analysis, Atypical GC Content Analysis, Subset Analysis, MLST based on housekeeping genes and KEGG Distribution etc.
+3. [PanGP](https://pangp.zhaopage.com/) is a tool for quickly analyzing bacterial pan-genome profile
+4. [panOCT](https://sourceforge.net/projects/panoct/?source=directory) Pan-genome Ortholog Clustering Tool, is a program written in PERL for pan-genomic analysis of closely related prokaryotic species or strains. Unlike traditional graph-based ortholog detection programs, it uses micro synteny or conserved gene neighborhood (CGN) in addition to homology to accurately place proteins into orthologous clusters.
+5. [PGAP](https://github.com/kastman/pgap-docker https://sourceforge.net/projects/pgap/) pan-genomes analysis pipeline. 太耗时了！！慎用！
+6. [metaPGAP](https://github.com/mitul-patel/metaPGAP) metagenomic Pan Genome Analysis Pipeline
+7. [PGAP-X](https://pgapx.ybzhao.com/) is a microbial comparative genomic analysis platform with graphic interface
+
+#### Antimicrobial and virulence genes 
+1. [ABRicate](https://github.com/tseemann/abricate) Mass screening of contigs for antimicrobial resistance or virulence genes. It comes bundled with multiple databases: NCBI, CARD, ARG-ANNOT, Resfinder, MEGARES, EcOH, PlasmidFinder, Ecoli_VF and VFDB.
+2. [ARIBA](https://github.com/sanger-pathogens/ariba) Antimicrobial Resistance Identification By Assembly
+3. [Meta-MARC](https://github.com/lakinsm/meta-marc) Metagenomic Markov models for Antimicrobial Resistance Characterization
+4. [DeepARG](https://bench.cs.vt.edu/deeparg) The deepARG models have been designed for computational analysis of next generation sequencing data such as Metagenomes. The main contribution of the deepARG models are their low false negative rate during predictions. Also, the gene-like sequences model is designed to find novel ARGs based on the sequence homology.
+5. [BacMet](http://bacmet.biomedicine.gu.se/)is an easy-to-use bioinformatics resource of antibacterial biocide- and metal-resistance genes. BacMet consists of two databases:
+A manually curated database of genes with experimentally confirmed resistance function
+A database of predicted resistance genes based on sequence similarity to genes with experimentally confirmed function
+6. [CARD](https://card.mcmaster.ca/) The Comprehensive Antibiotic Resistance Database
+7. [SRST2](https://github.com/katholt/srst2) Short Read Sequence Typing for Bacterial Pathogens
+This program is designed to take Illumina sequence data, a MLST database and/or a database of gene sequences (e.g. resistance genes, virulence genes, etc) and report the presence of STs and/or reference genes.
+8. [Resfams](http://www.dantaslab.org/resfams)is a curated database of protein families and associated profile hidden Markov models (HMMs), confirmed for antibiotic resistance function and organized by ontology.
+9. [NCBI Bacterial Antimicrobial Resistance Reference Gene Database](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA313047)
+10. [ResFinder](https://cge.cbs.dtu.dk/services/ResFinder/) identifies acquired genes and/or finds chromosomal mutations mediating antimicrobial resistance in total or partial DNA sequence of bacteria.
+11. [c-SSTAR](https://github.com/chrisgulvik/c-SSTAR) LI-Sequence Search Tool for Antimicrobial Resistance
+12. [ARGs-OAP Galaxy](https://smile.hku.hk/SARGs) Online Analysis Pipeline for Anti-biotic Resistance Genes Detection from Meta-genomic Data Using an Integrated Structured ARG-database
+    Availible Tools:
+    → SARGFAM: Sargfam database and profile Hidden Markov Models based alignment algorithm for ARGs-like sequences annotation were a function module in ARGs-OAP v2.0, supporting supplementary sequence retrieval strategy to current similarity search method (i.e. UBLAST and BLAST), especially applied on detecting remote homolog (novel genes).
+    → ARGPORE: This tool can help users to identify ARG hits on nanopore reads and simultaneously find the carrier population of the identified ARGs by searching against phylogenetic marker genes on nanopore reads.
+    → Microbial Source Tracking (MST): Microbial Source Tracking is a source-tracking platform using machine-learning classification with ARG abundance profiles. In other words, it precisely tracks antibiotic resistance gene pollution from different sources when your samples are related to human feces, animal feces, wastewater treatment plants, natural environments. This is a novel application of your high-throughput sequencing dataset. The developed source-tracking platform when coupling with proper experiment design and efficient metagenomic analysis tools will have significant implications for assessing AMR pollution. Following predicted source contribution status, risk ranking of different sources in ARG dissemination will be possible, thereby paving the way for establishing priority in mitigating ARG spread and designing effective control strategies.
+    → ARGs-OSP: Antibiotic Resistant Genes Online Searching Platform. ARGs-OSP is online search platfrom that provides a global ARG profile covering the information of their phylogenetic and ecological distribution. Search and download functionality are designed for users to retrieve the occurrence of ARGs in different taxonomy and the abundance of ARGs in different habitats. Through data sharing, ARGs-OSP aims to motivate and facilitate future studies into mining new information and knowledge from the combined data, without making repeated efforts in dataset processing.
+    → I-VIP: Integron Visualization and Identification Pipeline: 
+
+---
+
 ####  Referenses
-1. Duvallet, C., Gibbons, S. M., Gurry, T., Irizarry, R. A. & Alm, E. J. Meta-analysis of gut microbiome studies identifies disease-specific and shared responses. Nat. Commun. 8, 1784 (2017).
+
+<small>1. Duvallet, C., Gibbons, S. M., Gurry, T., Irizarry, R. A. & Alm, E. J. Meta-analysis of gut microbiome studies identifies disease-specific and shared responses. Nat. Commun. 8, 1784 (2017).
 2. Quince, C., Walker, A. W., Simpson, J. T., Loman, N. J. & Segata, N. Shotgun metagenomics, from sampling to analysis. Nat. Biotechnol. 35, 833–844 (2017).
 3. Browne, H. P. et al. Culturing of ‘unculturable’ human microbiota reveals novel taxa and extensive sporulation. Nature 533, 543–546 (2016).
 4. Forster, S. C. et al. A human gut bacterial genome and culture collection for precise and efficient metagenomic analysis. Nat. Biotechnol. 37, 186–192 (2019)
@@ -55,23 +173,19 @@ Just the Docs gives your documentation a jumpstart with a responsive Jekyll them
 21. Revell, L. J. phytools: an R package for phylogenetic comparative biology (and other things). Methods Ecol. Evol. 3, 217–223 (2012).
 22. Zmora, N., Zilberman-Schapira, G., Suez, J., Mor, U., Dori-Bachash, M., Bashiardes, S., et al. (2018). Personalized gut mucosal colonization resistance to empiric probiotics is associated with unique host and microbiome features. Cell 174:1388-1405.e21. doi: 10.1016/j.cell.2018.08.041
 23. Liu, B., and Pop, M. (2009). ARDB–antibiotic resistance genes database. Nucleic Acids Res. 37, D443–D447. doi: 10.1093/nar/gkn656
-24. Chen, L., Zheng, D., Liu, B., Yang, J., and Jin, Q. (2016). VFDB 2016: hierarchical and refined dataset for big data analysis–10 years on. Nucleic Acids Res. 44, D694–D697. doi: 10.1093/nar/gkv1239
-25. 
+24. Chen, L., Zheng, D., Liu, B., Yang, J., and Jin, Q. (2016). VFDB 2016: hierarchical and refined dataset for big data analysis–10 years on. Nucleic Acids Res. 44, D694–D697. doi: 10.1093/nar/gkv1239</small>
+
+
 ####  Github
-1. [A new genomic blueprint of the human gut microbiota] (https://github.com/Finn-Lab/MGS-gut)
-2.  
+1. [A new genomic blueprint of the human gut microbiota](https://github.com/Finn-Lab/MGS-gut)
+
 ####  Online tools
-1. [Predictive metabolomic profiling of microbial communities using amplicon or metagenomic sequences]
- (http:// huttenhower.sph.harvard.edu/melonnpan/]
-
-
-
-
-Just the Docs is built for [Jekyll](https://jekyllrb.com), a static site generator. View the [quick start guide](https://jekyllrb.com/docs/) for more information. Just the Docs requires no special plugins and can run on GitHub Pages' standard Jekyll compiler. The [Jekyll SEO Tag plugin](https://github.com/jekyll/jekyll-seo-tag) is included by default (no need to run any special installation) to inject SEO and open graph metadata on docs pages. For information on how to configure SEO and open graph metadata visit the [Jekyll SEO Tag usage guide](https://jekyll.github.io/jekyll-seo-tag/usage/).
+1. [Predictive metabolomic profiling of microbial communities using amplicon or metagenomic sequences](http:// huttenhower.sph.harvard.edu/melonnpan/]
 
 ### Quick start: Use as a GitHub Pages remote theme
 
 1. Add Just the Docs to your Jekyll site's `_config.yml` as a [remote theme](https://blog.github.com/2017-11-29-use-any-theme-with-github-pages/)
+   
 ```zsh
 parallel -j 35 --xapply \
 $'kneaddata -i {1} -i {2} \
@@ -85,6 +199,7 @@ $'kneaddata -i {1} -i {2} \
 ### Local installation: Use the gem-based theme
 
 1. Install the Ruby Gem
+   
 ```bash
 $ for i in $(cat samplelist )
 do
@@ -113,7 +228,6 @@ bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./krak
 bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".G.braken -w ./bracken_res/"$i".G.braken.report -r 150 -l G
 bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".C.braken -w ./bracken_res/"$i".C.braken.report -r 150 -l C
 bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".O.braken -w ./bracken_res/"$i".O.braken.report -r 150 -l O
-
 done
 ```
 2. Add Just the Docs to your Jekyll site’s `_config.yml`
