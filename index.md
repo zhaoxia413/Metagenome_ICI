@@ -42,57 +42,59 @@ Metagenomics is the study of microbial communities in their original living plac
 
 ---
 
-###  Shotgun Metagenomic Analysis
+##  Shotgun Metagenomic Analysis
 
 ---
-####  Data download
+###  Data download
 1. [Metagenomics toolkit](https://github.com/EBI-Metagenomics/emg-toolkit) enables scientists to download all of the sample metadata for a given study or sequence to a single csv file.
 2. (ffq)(https://github.com/pachterlab/ffq).Fetch run information from the European Nucleotide Archive (ENA).
 3. [NCBI Genome Downloading](https://github.com/kblin/ncbi-genome-download)
    ```zsh
    $ ncbi-genome-download --genera "Streptomyces coelicolor" bacteria
    ```
-####  Quality control of raw data
-####  Remove human sequences
-####  Quality control of trimmed data
-####  De novo assembly
+###  Quality control of raw data
+###  Remove human sequences
+1. [kneaddata](https://github.com/biobakery/kneaddata)
+###  Quality control of trimmed data
+###  De novo assembly
 1. short reads assembler[SPAdes](http://bioinf.spbau.ru/spades)
 2. for assembling large and complex metagenomics data[MEGAHIT](https://github.com/voutcn/megahit)
    MEGAHIT is an ultra-fast and memory-efficient NGS assembler. It is optimized for metagenomes, but also works well on generic single genome assembly (small or mammalian size) and single-cell assembly.
-####  Alignment
+###  Alignment
 1. [bowtie2](https://github.com/BenLangmead/bowtie2)
-2. Burrows-Wheeler Aligner [BWA](https://github.com/lh3/bwa)
+2. [BWA](https://github.com/lh3/bwa)
 #### reads binning: from clean reads
 总体来说应用最广泛的就是基于genes binning 和 contig binning
-#### Genes binning: from gene
+### Genes binning: from gene
 Genes binning方法一般是在宏基因组做完组装和基因预测之后，把所有样品中预测到的基因混合在一起，去冗余得到unique genes集合，对这个unique genes集合进行binning，主要是根据gene在各个样品中的丰度变化模式，计算gene之间的相关性，利用这种相关性进行聚类。
 1. metagenomic linkage groups ( MLG )
 2. metagenomic clusters ( MGC )
 3. metagenomic species ( MGS )
 4. metagenomic operational taxonomic units ( MetaOTUs )
 
-####  Contig bining: from contig
+###  Contig bining: from contig
 1. [MetaBin](http://metabin.riken.jp/)
 2. [metaBAT](https://bitbucket.org/berkeleylab/metabat)
 3. [CONCOCT](https://github.com/BinPro/CONCOCT)
 4. [MetaAnnotator/MetaCluster] is a novel software for binning and annotating short paired-end reads(https://i.cs.hku.hk/~alse/MetaCluster/)
-####  Quality control of bining
+###  Quality control of bining
 1. [CheckM](http://ecogenomics.github.io/CheckM/)
-####  Phylogenetic and taxonomic analyses
+###  Phylogenetic and taxonomic analyses
 1. [Kaiju](https://github.com/zhaoxia413/kaiju) is a program for the taxonomic classification of high-throughput sequencing reads, e.g., Illumina or Roche/454, from whole-genome sequencing of metagenomic DNA. Reads are directly assigned to taxa using the NCBI taxonomy and a reference database of protein sequences from microbial and viral genomes.
 2. The second version of the Kraken taxonomic sequence classification system [kraken2](https://github.com/DerrickWood/kraken2)
 3. 
-####  Functional characterization
+###  Functional characterization
 1. [The Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi)
 2. [eggNOG-mapper](http://eggnogdb.embl.de/#/app/emapper)
-####  Species prevalence and abundance
+3. [Predictive metabolomic profiling of microbial communities using amplicon or metagenomic sequences](http:// huttenhower.sph.harvard.edu/melonnpan/]
+###  Species prevalence and abundance
 1. [PanPhlAn 3 - strain detection and characterization](https://github.com/SegataLab/panphlan)
 
-#### Strain-level
+### Strain-level
 1. Strain-level Metagenomic Estimation of Growth rate [SMEG](https://github.com/ohlab/SMEG) measures growth rates of bacterial subspecies or strains from complex metagenomic samples. SMEG is capable of identifying novel or uncharacterized strains in a given sample prior to growth estimation.
 [Emiola, A., Zhou, W., Oh, J. (2020) "Metagenomic growth rate inferences of strains in situ," Science Advances, 6(17), p.eaaz2299](https://advances.sciencemag.org/content/6/17/eaaz2299)
 
-#### Phylogenetic tree
+### Phylogenetic tree
 1. [Pairdist](https://github.com/frederic-mahe/pairdist)：用于建NJ树
 2. [TreeBest]（https://github.com/lh3/treebest 或者 http://treesoft.sourceforge.net/)
    [TreeBest的使用](http://blog.sina.com.cn/s/blog_620b35790100mcp6.html)
@@ -105,16 +107,16 @@ Genes binning方法一般是在宏基因组做完组装和基因预测之后，�
 9. [PATRIC](https://www.patricbrc.org/)：Phylogenetic Tree Builder
 10. [TempEst](http://tree.bio.ed.ac.uk/software/tempest/)TempEst is a tool for investigating the temporal signal and 'clocklikeness' of molecular phylogenies.
 
-####  Comparative genomics
+###  Comparative genomics
 1. [PGCGAP - the Prokaryotic Genomics and Comparative Genomics Analysis Pipeline](https://github.com/liaochenlanruo/pgcgap)
 2. [Sibelia](http://bioinf.spbau.ru/en/sibelia): A comparative genomics tool
-####  Multiomics assays
-####  Correlation analysis
-####  Piplines
+###  Multiomics assays
+###  Correlation analysis
+###  Piplines
 1. [metaWrap](https://github.com/bxlab/metaWRAP)
 2. [gatk4-pathseq](https://github.com/gatk-workflows/gatk4-pathseq) This repo contains workflows for computational pathogen discovery using PathSeq, a pipeline in the Genome Analysis Toolkit (GATK) for detecting microbial organisms in short-read deep sequencing samples taken from a host organism.
 
-#### pan-genomes analysis
+### pan-genomes analysis
 1. [Roary](http://sanger-pathogens.github.io/Roary/) Large-scale prokaryote pan genome analysis Roary
 2. [BPGA](https://iicb.res.in/bpga/index.html) is an ultra-fast software package that provides comprehensive pan genome analysis of microorganisms.PGA is an ultra-fast software package that provides comprehensive pan genome analysis of microorganisms. In addition to all types of routine pan genomic analyses (Pan genome Profiles, Pan/Core Phylogeny etc.), BPGA includes a number of novel downstream analysis features like Exclusive Gene Family Analysis, Atypical GC Content Analysis, Subset Analysis, MLST based on housekeeping genes and KEGG Distribution etc.
 3. [PanGP](https://pangp.zhaopage.com/) is a tool for quickly analyzing bacterial pan-genome profile
@@ -123,7 +125,7 @@ Genes binning方法一般是在宏基因组做完组装和基因预测之后，�
 6. [metaPGAP](https://github.com/mitul-patel/metaPGAP) metagenomic Pan Genome Analysis Pipeline
 7. [PGAP-X](https://pgapx.ybzhao.com/) is a microbial comparative genomic analysis platform with graphic interface
 
-#### Antimicrobial and virulence genes 
+### Antimicrobial and virulence genes 
 1. [ABRicate](https://github.com/tseemann/abricate) Mass screening of contigs for antimicrobial resistance or virulence genes. It comes bundled with multiple databases: NCBI, CARD, ARG-ANNOT, Resfinder, MEGARES, EcOH, PlasmidFinder, Ecoli_VF and VFDB.
 2. [ARIBA](https://github.com/sanger-pathogens/ariba) Antimicrobial Resistance Identification By Assembly
 3. [Meta-MARC](https://github.com/lakinsm/meta-marc) Metagenomic Markov models for Antimicrobial Resistance Characterization
@@ -140,15 +142,20 @@ This program is designed to take Illumina sequence data, a MLST database and/or 
 11. [c-SSTAR](https://github.com/chrisgulvik/c-SSTAR) LI-Sequence Search Tool for Antimicrobial Resistance
 12. [ARGs-OAP Galaxy](https://smile.hku.hk/SARGs) Online Analysis Pipeline for Anti-biotic Resistance Genes Detection from Meta-genomic Data Using an Integrated Structured ARG-database
     Availible Tools:
+
     → SARGFAM: Sargfam database and profile Hidden Markov Models based alignment algorithm for ARGs-like sequences annotation were a function module in ARGs-OAP v2.0, supporting supplementary sequence retrieval strategy to current similarity search method (i.e. UBLAST and BLAST), especially applied on detecting remote homolog (novel genes).
+
     → ARGPORE: This tool can help users to identify ARG hits on nanopore reads and simultaneously find the carrier population of the identified ARGs by searching against phylogenetic marker genes on nanopore reads.
+
     → Microbial Source Tracking (MST): Microbial Source Tracking is a source-tracking platform using machine-learning classification with ARG abundance profiles. In other words, it precisely tracks antibiotic resistance gene pollution from different sources when your samples are related to human feces, animal feces, wastewater treatment plants, natural environments. This is a novel application of your high-throughput sequencing dataset. The developed source-tracking platform when coupling with proper experiment design and efficient metagenomic analysis tools will have significant implications for assessing AMR pollution. Following predicted source contribution status, risk ranking of different sources in ARG dissemination will be possible, thereby paving the way for establishing priority in mitigating ARG spread and designing effective control strategies.
+
     → ARGs-OSP: Antibiotic Resistant Genes Online Searching Platform. ARGs-OSP is online search platfrom that provides a global ARG profile covering the information of their phylogenetic and ecological distribution. Search and download functionality are designed for users to retrieve the occurrence of ARGs in different taxonomy and the abundance of ARGs in different habitats. Through data sharing, ARGs-OSP aims to motivate and facilitate future studies into mining new information and knowledge from the combined data, without making repeated efforts in dataset processing.
+
     → I-VIP: Integron Visualization and Identification Pipeline: 
 
 ---
 
-####  Referenses
+###  Referenses
 
 <small>1. Duvallet, C., Gibbons, S. M., Gurry, T., Irizarry, R. A. & Alm, E. J. Meta-analysis of gut microbiome studies identifies disease-specific and shared responses. Nat. Commun. 8, 1784 (2017).
 2. Quince, C., Walker, A. W., Simpson, J. T., Loman, N. J. & Segata, N. Shotgun metagenomics, from sampling to analysis. Nat. Biotechnol. 35, 833–844 (2017).
@@ -157,30 +164,27 @@ This program is designed to take Illumina sequence data, a MLST database and/or 
 5. Kang, D. D., Froula, J., Egan, R. & Wang, Z. MetaBAT, an efficient tool for accurately reconstructing single genomes from complex microbial communities. PeerJ 3, e1165 (2015).
 6. Parks, D. H., Imelfort, M., Skennerton, C. T., Hugenholtz, P. & Tyson, G. W. CheckM: assessing the quality of microbial genomes recovered from isolates,single cells, and metagenomes. Genome Res. 25, 1043–1055 (2015).
 7. Li,D.,Liu,C.-M.,Luo,R.,Sadakane,K.&Lam,T.-W.MEGAHIT:anultra-fast single-node solution for large and complex metagenomics assembly via succinct de Bruijn graph. Bioinformatics 31, 1674–1676 (2015).
-8. Uritskiy,G.V.,DiRuggiero,J.&Taylor,J.MetaWRAP-aflexiblepipelinefor genome-resolved metagenomic data analysis. Microbiome 6, 158 (2018).
-9. Varghese,N.J.etal.Microbialspeciesdelineationusingwholegenome sequences. Nucleic Acids Res. 43, 6761–6771 (2015).
+8.  Uritskiy,G.V.,DiRuggiero,J.&Taylor,J.MetaWRAP-aflexiblepipelinefor genome-resolved metagenomic data analysis. Microbiome 6, 158 (2018).
+9.  Varghese,N.J.etal.Microbialspeciesdelineationusingwholegenome sequences. Nucleic Acids Res. 43, 6761–6771 (2015).
 10. Segata, N., Börnigen, D., Morgan, X. C. & Huttenhower, C. PhyloPhlAn is a new method for improved phylogenetic and taxonomic placement of microbes. Nat. Commun. 4, 2304 (2013).
 11. Blin,K.etal.antiSMASH4.0—improvementsinchemistryprediction and gene cluster boundary identification. Nucleic Acids Res. 45, W36–W41 (2017).
 12. Mitchell,A.L.etal.EBIMetagenomicsin2017:enrichingtheanalysisof microbial communities, from sequence reads to assemblies. Nucleic Acids Res. 46, D726–D735 (2018).
 13. Kanehisa,M.,Sato,Y.&Morishima,K.BlastKOALAandGhostKOALA:KEGG tools for functional characterization of genome and metagenome sequences. J. Mol. Biol. 428, 726–731 (2016).
 14. Crichton,R.R.IronMetabolism:FromMolecularMechanismstoClinical Consequences. (John Wiley, Hoboken, NJ, 2016).
-15. Pasolli,E.etal.Extensiveunexploredhumanmicrobiomediversityrevealedby over 150,000 genomes from metagenomes spanning age, geography, and lifestyle. Cell 176, 649–662 (2019).
-16. Ren, J., Ahlgren, N. A., Lu, Y. Y., Fuhrman, J. A. & Sun, F. VirFinder: a novel k-mer based tool for identifying viral sequences from assembled metagenomic data. Microbiome 5, 69 (2017).
-17. Markowitz, V. M. et al. IMG: the Integrated Microbial Genomes database and comparative analysis system. Nucleic Acids Res. 40, D115–D122 (2012).
-18. Olm,M.R.,Brown,C.T.,Brooks,B.&Banfield,J.F.dRep:atoolforfastand accurate genomic comparisons that enables improved genome recovery from metagenomes through de-replication. ISME J. 11, 2864–2868 (2017).
-19. Stamatakis,A.RAxMLversion8:atoolforphylogeneticanalysisand post-analysis of large phylogenies. Bioinformatics 30, 1312–1313 (2014).
-20. Letunic,I.&Bork,P.Interactivetreeoflife(iTOL)v3:anonlinetoolforthedisplay and annotation of phylogenetic and other trees. Nucleic Acids Res. 44, W242–W245 (2016).
-21. Revell, L. J. phytools: an R package for phylogenetic comparative biology (and other things). Methods Ecol. Evol. 3, 217–223 (2012).
-22. Zmora, N., Zilberman-Schapira, G., Suez, J., Mor, U., Dori-Bachash, M., Bashiardes, S., et al. (2018). Personalized gut mucosal colonization resistance to empiric probiotics is associated with unique host and microbiome features. Cell 174:1388-1405.e21. doi: 10.1016/j.cell.2018.08.041
-23. Liu, B., and Pop, M. (2009). ARDB–antibiotic resistance genes database. Nucleic Acids Res. 37, D443–D447. doi: 10.1093/nar/gkn656
-24. Chen, L., Zheng, D., Liu, B., Yang, J., and Jin, Q. (2016). VFDB 2016: hierarchical and refined dataset for big data analysis–10 years on. Nucleic Acids Res. 44, D694–D697. doi: 10.1093/nar/gkv1239</small>
+15.  Pasolli,E.etal.Extensiveunexploredhumanmicrobiomediversityrevealedby over 150,000 genomes from metagenomes spanning age, geography, and lifestyle. Cell 176, 649–662 (2019).
+16.  Ren, J., Ahlgren, N. A., Lu, Y. Y., Fuhrman, J. A. & Sun, F. VirFinder: a novel k-mer based tool for identifying viral sequences from assembled metagenomic data. Microbiome 5, 69 (2017).
+17.  Markowitz, V. M. et al. IMG: the Integrated Microbial Genomes database and comparative analysis system. Nucleic Acids Res. 40, D115–D122 (2012).
+18.  Olm,M.R.,Brown,C.T.,Brooks,B.&Banfield,J.F.dRep:atoolforfastand accurate genomic comparisons that enables improved genome recovery from metagenomes through de-replication. ISME J. 11, 2864–2868 (2017).
+19.  Stamatakis,A.RAxMLversion8:atoolforphylogeneticanalysisand post-analysis of large phylogenies. Bioinformatics 30, 1312–1313 (2014).
+20.  Letunic,I.&Bork,P.Interactivetreeoflife(iTOL)v3:anonlinetoolforthedisplay and annotation of phylogenetic and other trees. Nucleic Acids Res. 44, W242–W245 (2016).
+21.  Revell, L. J. phytools: an R package for phylogenetic comparative biology (and other things). Methods Ecol. Evol. 3, 217–223 (2012).
+22.   Zmora, N., Zilberman-Schapira, G., Suez, J., Mor, U., Dori-Bachash, M., Bashiardes, S., et al. (2018). Personalized gut mucosal colonization resistance to empiric probiotics is associated with unique host and microbiome features. Cell 174:1388-1405.e21. doi: 10.1016/j.cell.2018.08.041
+23.   Liu, B., and Pop, M. (2009). ARDB–antibiotic resistance genes database. Nucleic Acids Res. 37, D443–D447. doi: 10.1093/nar/gkn656
+24.   Chen, L., Zheng, D., Liu, B., Yang, J., and Jin, Q. (2016). VFDB 2016: hierarchical and refined dataset for big data analysis–10 years on. Nucleic Acids Res. 44, D694–D697. doi: 10.1093/nar/gkv1239</small>
 
 
 ####  Github
 1. [A new genomic blueprint of the human gut microbiota](https://github.com/Finn-Lab/MGS-gut)
-
-####  Online tools
-1. [Predictive metabolomic profiling of microbial communities using amplicon or metagenomic sequences](http:// huttenhower.sph.harvard.edu/melonnpan/]
 
 ### Quick start: Use as a GitHub Pages remote theme
 
