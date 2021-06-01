@@ -96,9 +96,54 @@ Genes binning方法一般是在宏基因组做完组装和基因预测之后，�
 ###  Species prevalence and abundance
 1. [PanPhlAn 3 - strain detection and characterization](https://github.com/SegataLab/panphlan)
 
-### Strain-level
-1. Strain-level Metagenomic Estimation of Growth rate [SMEG](https://github.com/ohlab/SMEG) measures growth rates of bacterial subspecies or strains from complex metagenomic samples. SMEG is capable of identifying novel or uncharacterized strains in a given sample prior to growth estimation.
+### Strain-level and Phylogenetic Analysis
+
+[Segata Lab](http://segatalab.cibio.unitn.it/tools/index.html) and [Huttenhower lab](https://huttenhower.sph.harvard.edu/tools/) Tools
+_______
+[bioBakery](https://github.com/biobakery/biobakery/) is a suite of software, tutorials, and workflows of methods developed by the Huttenhower and Segata labs for performing analyses on microbial communities from metagenomic data.
+
+[MetaPhlAn](https://github.com/biobakery/MetaPhlAn): Metagenomic Phylogenetic Analysis.  a computational tool for profiling the composition of microbial communities (Bacteria, Archaea and Eukaryotes) from metagenomic shotgun sequencing data (i.e. not 16S) with species-level. With the StrainPhlAn module, it is now possible to perform accurate strain-level microbial profiling.
+ MetaPhlAn 3 increases the accuracy of taxonomic profiling
+
+[PanPhlAn](https://github.com/segatalab/panphlan) - strain detection and characterization
+
+[StrainPhlAn](https://github.com/biobakery/MetaPhlAn/wiki/StrainPhlAn-3.0)  is a tool for strain-level resolution of species across a large sample sets, based on single nucleotide polymorphisms (SNPs) within conserved and unique species marker genes. The first step in the StrainPhlAn workflow is to run MetaPhlAn 3.0.
+
+[PhyloPhlAn](https://github.com/biobakery/phylophlan) is an integrated pipeline for large-scale phylogenetic profiling of genomes and metagenomes. PhyloPhlAn is an accurate, rapid, and easy-to-use method for large-scale microbial genome characterization and phylogenetic analysis at multiple levels of resolution. PhyloPhlAn can assign both genomes and metagenome-assembled genomes (MAGs) to species-level genome bins (SGBs). PhyloPhlAn can reconstruct strain-level phylogenies using clade-specific maximally informative phylogenetic markers, and can also scale to very-large phylogenies comprising >17,000 microbial species.
+
+[GraPhlAn](https://github.com/biobakery/graphlan) is a software tool for producing high-quality circular representations of taxonomic and phylogenetic trees. GraPhlAn focuses on concise, integrative, informative, and publication-ready representations of phylogenetically- and taxonomically-driven investigation.
+
+[LEfSe](https://github.com/biobakery/biobakery/wiki/lefse) LDA Effect Size (LEfSe) is an algorithm for high-dimensional biomarker discovery and explanation that identifies genomic features (genes, pathways, or taxa) characterizing the differences between two or more biological conditions (or classes). It emphasizes both statistical significance and biological relevance, allowing researchers to identify differentially abundant features that are also consistent with biologically meaningful categories (subclasses).
+
+[MetaMLST](https://github.com/SegataLab/metamlst/) is a software tool that performs an in-silico Multi Locus Sequence Typing (MLST) Analysis on metagenomic samples. MetaMLST achieves cultivation- and assembly- free strain level tracking. MetaMLST is able to detect and trace all the species to which the standard MLST protocol is applicable.
+
+[MetAML](https://github.com/SegataLab/metaml) is a computational tool for metagenomics-based prediction tasks and for quantitative assessment of the strength of potential microbiome-phenotype associations. It provides also species-level taxonomic profiles, marker presence data, and metadata for 3000+ public available metagenomes.
+
+[MetaRef](https://metaref.org/) is an online resource to comprehensively catalog and characterize clade-specific microbial genes. We identify and provide all core genes associated with all microbial species and genera with available reference genomes (final or draft). A subset of these gene families are consistently present in one or more taxonomic clades, which allows us to further indicate them as marker genes
+
+[microPITA](https://github.com/biobakery/biobakery/wiki/micropita) (microbiomes: Picking Interesting Taxonomic Abundance) is a computational tool enabling sample selection in two-stage (tiered) studies. Using two-stage designs can more efficiently allocate resources, reducing study costs, and maximizing the use of samples.
+
+[curatedMetagenomicData](https://waldronlab.io/curatedMetagenomicData/) is a Bioconductor package providing uniformly processed and manually annotated human microbiome profiles for thousands of people. Microbial taxonomy (from MetaPhlAn2) and metabolic functional potential (from HUMAnN2) can be analyzed with respect to numerous participant characteristics and health outcomes, simply and reproducibly on a normal laptop.
+
+[HUMAnN 3.0](https://github.com/biobakery/humann) is the next generation of HUMAnN (HMP Unified Metabolic Analysis Network).
+ HUMAnN 3.0 is the next generation of HUMAnN (HMP Unified Metabolic Analysis Network).
+[Usage](https://huttenhower.sph.harvard.edu/humann/)
+
+[MACARRoN](https://huttenhower.sph.harvard.edu/macarron/) (Metabolome Analysis and Combined Annotation Ranks for pRediction of Novel bioactives) is a tool for systematic analysis of microbiome-associated metabolomes for identification of novel, potentially bioactive small molecules. It leverages guilt-by-association i.e. covariance with a known metabolite to ecologically and biochemically annotate several thousand unknown features in metabolomes. To prioritize metabolites, it integrates ranks from multiple environmental or phenotypic indicators of bioactivity i.e. abundance and significant association with a condition (effect size and q-value). MACARRoN is currently being developed as an open source R package.
+
+[PICRUSt2](https://github.com/picrust/picrust2/wiki) (Phylogenetic Investigation of Communities by Reconstruction of Unobserved States) is a software for predicting functional abundances based only on marker gene sequences.
+
+"Function" usually refers to gene families such as KEGG orthologs and Enzyme Classification numbers, but predictions can be made for any arbitrary trait. Similarly, predictions are typically based on 16S rRNA gene sequencing data, but other marker genes can also be used.
+
+[SMEG](https://github.com/ohlab/SMEG) Strain-level Metagenomic Estimation of Growth rate (SMEG) measures growth rates of bacterial subspecies or strains from complex metagenomic samples. SMEG is capable of identifying novel or uncharacterized strains in a given sample prior to growth estimation.
 [Emiola, A., Zhou, W., Oh, J. (2020) "Metagenomic growth rate inferences of strains in situ," Science Advances, 6(17), p.eaaz2299](https://advances.sciencemag.org/content/6/17/eaaz2299)
+
+[SIGNA](http://sigma.omicsbio.org/) Strain-level inference of genomes from metagenomic analysis for biosurveillance.
+[Bioinformatics, Volume 31, Issue 2, 15 January 2015, Pages 170–177](https://academic.oup.com/bioinformatics/article/31/2/170/2366214)
+
+[MetaSNV] is a pipeline for calling metagenomic single nucleotide variants (SNVs). It was designed to scale well with the exponentially increasing amount of metagenomic datasets and is capable of handling large multi-species references.
+
+
 
 ### Phylogenetic tree
 1. [Pairdist](https://github.com/frederic-mahe/pairdist)：用于建NJ树
@@ -121,6 +166,8 @@ Genes binning方法一般是在宏基因组做完组装和基因预测之后，�
 4. [FindMyFriends](http://bioconductor.org/packages/release/bioc/html/FindMyFriends.html) Microbial Comparative Genomics in R.
 5. [Sibelia](http://bioinf.spbau.ru/en/sibelia): A comparative genomics tool
 ###  Multiomics assays
+[Anvi’o](https://merenlab.org/software/anvio/) is an open-source, community-driven analysis and visualization platform for microbial ‘omics. It brings together many aspects of today’s cutting-edge strategies including genomics, metagenomics, metatranscriptomics, pangenomics, metapangenomics, phylogenomics, and microbial population genetics in an integrated and easy-to-use fashion through extensive interactive visualization capabilities.
+
 ###  Correlation analysis
 ###  Piplines
 1. [metaWrap](https://github.com/bxlab/metaWRAP)
