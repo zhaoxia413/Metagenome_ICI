@@ -181,8 +181,8 @@ This program is designed to take Illumina sequence data, a MLST database and/or 
    21.  Revell, L. J. phytools: an R package for phylogenetic comparative biology (and other things). Methods Ecol. Evol. 3, 217–223 (2012).
    22.  Zmora, N., Zilberman-Schapira, G., Suez, J., Mor, U., Dori-Bachash, M., Bashiardes, S., et al. (2018). Personalized gut mucosal colonization resistance to empiric probiotics is associated with unique host and microbiome features. Cell 174:1388-1405.e21. doi: 10.1016/j.cell.2018.08.041.
    23.  Liu, B., and Pop, M. (2009). ARDB–antibiotic resistance genes database. Nucleic Acids Res. 37, D443–D447. doi: 10.1093/nar/gkn656.
-   24.   Chen, L., Zheng, D., Liu, B., Yang, J., and Jin, Q. (2016). VFDB 2016: hierarchical and refined dataset for big data analysis–10 years on. Nucleic Acids Res. 44, D694–D697. doi: 10.1093/nar/gkv1239
-</small>
+   24.   Chen, L., Zheng, D., Liu, B., Yang, J., and Jin, Q. (2016). VFDB 2016: hierarchical and refined dataset for big data analysis–10 years on. Nucleic Acids Res. 44, D694–D697. doi: 10.1093/nar/gkv1239.
+   </small>
 
 
 ####  Github
