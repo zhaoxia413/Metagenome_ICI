@@ -93,6 +93,7 @@ Genes binning方法一般是在宏基因组做完组装和基因预测之后，�
 1. [The Resistance Gene Identifier (RGI)](https://github.com/arpcard/rgi)
 2. [eggNOG-mapper](http://eggnogdb.embl.de/#/app/emapper)
 3. [Predictive metabolomic profiling of microbial communities using amplicon or metagenomic sequences](http:// huttenhower.sph.harvard.edu/melonnpan/]
+4. The [VMH](https://www.vmh.life/) database captures information on human and gut microbial metabolism and links this information to hundreds of diseases and nutritional data. At its core, there are hundreds of manually curated genome-scale metabolic reconstructions, which have been assembled based on genomic, biochemical, and physiological data. The VMH facilitates rapid analyses and interpretations of complex data arising from large-scale biomedical studies by enabling complex queries of its content, by providing a detailed graphical representation of human metabolism, and by distributing computational models for simulating human and microbial metabolism.
 ###  Species prevalence and abundance
 1. [PanPhlAn 3 - strain detection and characterization](https://github.com/SegataLab/panphlan)
 
@@ -143,6 +144,10 @@ _______
 
 [MetaSNV] is a pipeline for calling metagenomic single nucleotide variants (SNVs). It was designed to scale well with the exponentially increasing amount of metagenomic datasets and is capable of handling large multi-species references.
 
+### Correlation Networks
+[SparCC](https://github.com/bio-developer/sparcc) is a python module for computing correlations in compositional data (16S, metagenomics, etc').
+[CCLasso](https://github.com/huayingfang/CCLasso)
+
 
 
 ### Phylogenetic tree
@@ -164,7 +169,10 @@ _______
    [Usage](https://www.bioconductor.org/packages/release/bioc/vignettes/PanVizGenerator/inst/doc/panviz_howto.html)
 3. [PanVizGenerator](https://github.com/thomasp85/PanVizGenerator) This R package is a companion to the PanViz javascript visualization for functionally annotated pangenomes. While PanViz is fully self-contained once it is created, this package takes care of converting your pangenome data into a PanViz file.
 4. [FindMyFriends](http://bioconductor.org/packages/release/bioc/html/FindMyFriends.html) Microbial Comparative Genomics in R.
-5. [Sibelia](http://bioinf.spbau.ru/en/sibelia): A comparative genomics tool
+5. [Mauve](https://github.com/koadman/mauve): multiple alignment of conserved genomic sequence with rearrangements
+6. [panX](https://github.com/neherlab/pan-genome-analysis) microbial pan-genome analysis and exploration. Nucleic acids research, 2018
+7. [PEPPAN](https://github.com/zheminzhou/PEPPAN)Accurate reconstruction of bacterial pan- and core genomes with PEPPAN. Genome Res. 2020 
+8. [Sibelia](http://bioinf.spbau.ru/en/sibelia): A comparative genomics tool
 ###  Multiomics assays
 [Anvi’o](https://merenlab.org/software/anvio/) is an open-source, community-driven analysis and visualization platform for microbial ‘omics. It brings together many aspects of today’s cutting-edge strategies including genomics, metagenomics, metatranscriptomics, pangenomics, metapangenomics, phylogenomics, and microbial population genetics in an integrated and easy-to-use fashion through extensive interactive visualization capabilities.
 
@@ -212,15 +220,20 @@ This program is designed to take Illumina sequence data, a MLST database and/or 
     → I-VIP: Integron Visualization and Identification Pipeline: 
 
 
-####  Github
+###  Github code of Referedses
 1. [A new genomic blueprint of the human gut microbiota](https://github.com/Finn-Lab/MGS-gut)
 
-### Quick start: Use as a GitHub Pages remote theme
+## Quick start: Short-gun metagenome analysis
+0. quality control by kneaddata
+1. megahit assembly
+2. kraken-braken workflow
+3. metaWrap binning workflow
+4. metaphlan2 workflow
+5. humann2 microbiomic function: KEGG, COGs
 
-1. Add Just the Docs to your Jekyll site's `_config.yml` as a [remote theme](https://blog.github.com/2017-11-29-use-any-theme-with-github-pages/)
-   
+    KneadData uses either Bowtie2 (default) or BMTagger to identify the contaminant reads. 
 ```zsh
-parallel -j 35 --xapply \
+parallel -j 42 --xapply \
 $'kneaddata -i {1} -i {2} \
 -o kneaddata_res/{3} -v -t 20 --fastqc FastQC --remove-intermediate-output \
 --bowtie2-options "--very-sensitive --dovetail" \
@@ -231,27 +244,18 @@ $'kneaddata -i {1} -i {2} \
 
 ### Local installation: Use the gem-based theme
 
-1. Install the Ruby Gem
-   
+1. _Optional: Remove human sequences `kneaddata`
+  
 ```bash
 $ for i in $(cat samplelist )
 do
 kneaddata -i /data2/ZhouZhiyuan/RJNA678737/metagenome/"$i"_1.fastq.gz -i /data2/ZhouZhiyuan/RJNA678737/metagenome/"$i"_2.fastq.gz --reference-db /data3/zhaoxia/metagenomeTools/kneaddata_db/bowtie2_contam_hg37_db -v -t 20 --fastqc FastQC --remove-intermediate-output --bowtie2-options "--very-sensitive --dovetail" -o ./kneaddata_res/"$i"
 done
 ```
-
-```bash
-$ mkdir kraken_braken_merge_tables
-python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*P.braken  -o ./kraken_braken_merge_tables/combine_phylum.txt
-python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*C.braken  -o ./kraken_braken_merge_tables/combine_Class.txt
-python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*O.braken  -o ./kraken_braken_merge_tables/combine_Order.txt
-python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*G.braken  -o ./kraken_braken_merge_tables/combine_Genus.txt
-python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*F.braken  -o ./kraken_braken_merge_tables/combine_Family.txt
-python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*S.braken  -o ./kraken_braken_merge_tables/combine_Spices.txt
-```
+` move the kneaddata_res to the clean_data folder`
 
 ```zsh
-# _Optional:
+# _Optional:kraken_braken_batch
 for i in $(cat samplelist)
  do
 kraken2 --db /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ --threads 56  --report ./kraken_res/"$i".report --output ./kraken_res/"$i".output  ./clean_data/"$i"_kneaddata.fastq
@@ -263,7 +267,17 @@ bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./krak
 bracken -d /data3/zhaoxia/metagenomeTools/Kraken_database/krakenV1_db/ -i ./kraken_res/"$i".report -o ./bracken_res/"$i".O.braken -w ./bracken_res/"$i".O.braken.report -r 150 -l O
 done
 ```
-2. Add Just the Docs to your Jekyll site’s `_config.yml`
+```zsh
+# _Optional:combine_braken_output
+mkdir kraken_braken_merge_tables
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*P.braken  -o ./kraken_braken_merge_tables/combine_phylum.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*C.braken  -o ./kraken_braken_merge_tables/combine_Class.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*O.braken  -o ./kraken_braken_merge_tables/combine_Order.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*G.braken  -o ./kraken_braken_merge_tables/combine_Genus.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*F.braken  -o ./kraken_braken_merge_tables/combine_Family.txt
+python2 /usr/local/bin/combine_bracken_outputs.py --files ./bracken_res/*S.braken  -o ./kraken_braken_merge_tables/combine_Spices.txt
+```
+2. Assembly by `megahit`
 ```zsh
 $ parallel -j 42 --xapply \
 'megahit -1 {1} -2 {2} \
@@ -271,26 +285,67 @@ $ parallel -j 42 --xapply \
 -o Assembly_megahit_res/{3}' \
 ::: kneaddata_clean/*_1.fastq ::: kneaddata_clean/*_2.fastq :::: samplelist
 ```
-3. _Optional:_ Initialize search data (creates `search-data.json`)
+3. _Optional: `metawrap assembly`
 ```zsh
 $ cat kneaddata_clean/*_1.fastq > merge_assembly_reads/ALL_READS_1.fastq
   cat kneaddata_clean/*_2.fastq > merge_assembly_reads/ALL_READS_2.fastq
   metawrap assembly -1 merge_assembly_reads/ALL_READS_1.fastq -2 merge_assembly_reads/ALL_READS_2.fastq -m 24 -t 8 \
   --metaspades -o merged_megahit_assembly
 ```
-
+4. Contig QC  `quast`
 ```zsh
 $ conda activate py3
 /data3/zhaoxia/metagenomeTools/quast/quast.py ./merged_megahit_assembly/assembly.contigs.fa -o Assembly_quast_evaluation/megahit-report
 conda deactivate
 ```
-
+5.  `metaphlan2 piplines`
+   
 ```zsh
 $ mkdir metaphlan_microAbundance
-metaphlan2.py merged_megahit_assembly/assembly.contigs.fa --input_type fasta > ./metaphlan_microAbundance/merged_contigs_profiled_metagenome.txt
+for i in $(cat samplelist)
+do
+metaphlan2.py Assembly_megahit_res/"$i"/"$i".contigs.fa --input_type fasta --nproc 5 \
+-t rel_ab_w_read_stats --unknown_estimation \
+-o ./metaphlan_microAbundance/"$i"_profiled_metagenome.txt
+done
+```
+6. merge the profiled_metagenome files
+
+```zsh
+mkdir metaphlan_final_output
+merge_metaphlan_tables.py profiled_samples/*.txt > metaphlan_final_output/metaphlan_merged_abundance_table.txt
+```
+7. Visualization of the metaphylan result
+
+```zsh
+mkdir metaphlan_output_images
+metaphlan_hclust_heatmap.py \
+-c bbcry --top 25 --minv 0.1 -s log \
+--in metaphlan_final_output/metaphlan_merged_abundance_table.txt\
+--out metaphlan_output_images/abundance_heatmap.png
+```
+8. GraPhlAn Visualization
+
+```zsh
+mkdir -p metaphlan_tmp
+for file in profiled_samples/*   
+do
+    filename=`basename ${file}`
+    samplename=${filename%\.*}
+    metaphlan2graphlan.py ${file}  --tree_file metaphlan_tmp/${samplename}.tree.txt --annot_file metaphlan_tmp/${samplename}.annot.txt
+    graphlan_annotate.py --annot metaphlan_tmp/${samplename}.annot.txt metaphlan_tmp/${samplename}.tree.txt metaphlan_tmp/${samplename}.xml
+    graphlan.py --dpi 200 metaphlan_tmp/${samplename}.xml metaphlan_output_images/${samplename}.png
+done
 ```
 
-3. 解决metawrap binning 时 Cannot repair BWA paired reads that have different name
+```zsh
+metaphlan2graphlan.py metaphlan_final_output/metaphlan_merged_abundance_table.txt  --tree_file metaphlan_tmp/merged.tree.txt --annot_file metaphlan_tmp/merged.annot.txt
+graphlan_annotate.py --annot metaphlan_tmp/merged.annot.txt tmp/merged.tree.txt metaphlan_tmp/merged.xml
+graphlan.py --dpi 300 metaphlan_tmp/merged.xml metaphlan_output_images/merged.png
+```
+
+`解决metawrap binning 时 Cannot repair BWA paired reads that have different name`
+
 ```zsh
 $ for i in $(cat samplelist)
 do
@@ -299,11 +354,9 @@ in2=kneaddata_clean/"$i"_1_kneaddata_paired_2.fastq \
 out=bbrename/"$i"_rename_1.fastq out2=bbrename/"$i"_rename_2.fastq 
 done
 ```
-4. Bin the co-assembly with three different algorithms with the Binning module
-运行metawrap binning前出现以下错误
-samtools: error while loading shared libraries: libncurses.so.6，所以用conda py3的环境
-
-Following assembly with 
+1. Bin the co-assembly with three different algorithms with the Binning module
+`运行metawrap binning前出现以下错误`
+`samtools: error while loading shared libraries: libncurses.so.6，所以用conda py3的环境`
 
 ```bash
 # .. or if you're using a Gemfile (bundler) 
