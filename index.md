@@ -230,6 +230,7 @@ This program is designed to take Illumina sequence data, a MLST database and/or 
 3. metaWrap binning workflow
 4. metaphlan2 workflow
 5. humann2 microbiomic function: KEGG, COGs
+6. StrainPhlAn: metagenomic strain-level population genomics
 
     KneadData uses either Bowtie2 (default) or BMTagger to identify the contaminant reads. 
 ```zsh
