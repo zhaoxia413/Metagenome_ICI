@@ -313,16 +313,27 @@ done
 6. merge the profiled_metagenome files
 
 ```zsh
-mkdir metaphlan_final_output
-merge_metaphlan_tables.py profiled_samples/*.txt > metaphlan_final_output/metaphlan_merged_abundance_table.txt
+$ mkdir metaphlan_final_output
+/data3/zhaoxia/metagenomeTools/MetaPhlAn/utils/merge_metaphlan_tables.py metaphlan_microAbundance/*.txt > metaphlan_final_output/merged_profiled_microbiome.txt
 ```
+[metaphlan2 manual](https://github.com/biobakery/biobakery/wiki/metaphlan2)
+```zsh
+$mkdir metaphlan_output_images
+$grep -E "(s__)|(^ID)" metaphlan_final_output/merged_profiled_microbiome.txt | grep -v "t__" | sed 's/^.*s__//g' > metaphlan_final_output/merged_profiled_species.txt
+```
+```zsh
+$hclust2.py -i metaphlan_final_output/merged_profiled_species.txt -o metaphlan_output_images/abundance_heatmap_species.png  --ftop 30 --f_dist_f braycurtis --s_dist_f braycurtis --cell_aspect_ratio 0.5 -l --flabel_size 5 --slabel_size 5 --max_flabel_len 100 --max_slabel_len 100 --minv 0.1 --dpi 300
+```
+```zsh
+```zsh
+
 7. Visualization of the metaphylan result
 
 ```zsh
 mkdir metaphlan_output_images
-metaphlan_hclust_heatmap.py \
+/data3/zhaoxia/metagenomeTools/MetaPhlAn/utils/metaphlan_hclust_heatmap.py \
 -c bbcry --top 25 --minv 0.1 -s log \
---in metaphlan_final_output/metaphlan_merged_abundance_table.txt\
+--in metaphlan_final_output/merged_profiled_microbiome.txt \
 --out metaphlan_output_images/abundance_heatmap.png
 ```
 8. GraPhlAn Visualization
